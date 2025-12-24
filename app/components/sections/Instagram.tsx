@@ -134,20 +134,37 @@ const CTAWrapper = styled.div`
   margin-top: ${theme.spacing["2xl"]};
 `;
 
-// Додайте свої фото з Instagram:
-// 1. Збережіть фото/скріншоти з постів у папку: public/images/instagram/
-// 2. Назвіть їх post1.jpg, post2.jpg і т.д.
-// 3. Оновіть шляхи та посилання нижче
 const instagramPostsData = [
   {
     image: "/images/instagram/preview1.jpg",
     link: "https://www.instagram.com/vikky_doch/reel/DSkcHthjOJO/",
+    position: "center",
   },
-  // Додайте більше постів тут:
-  // {
-  //   image: "/images/instagram/preview2.jpg",
-  //   link: "https://www.instagram.com/p/POST_ID/",
-  // },
+  {
+    image: "/images/instagram/preview2.jpg",
+    link: "https://www.instagram.com/vikky_doch/reel/DR1w1FYDORU/",
+    position: "center",
+  },
+  {
+    image: "/images/instagram/preview3.jpg",
+    link: "https://www.instagram.com/vikky_doch/reel/DR_-URsjJ8D/",
+    position: "top",
+  },
+  {
+    image: "/images/instagram/preview4.jpg",
+    link: "https://www.instagram.com/vikky_doch/reel/DR_-IkIjMe9/",
+    position: "top",
+  },
+  {
+    image: "/images/instagram/preview5.jpg",
+    link: "https://www.instagram.com/vikky_doch/reel/DRyv5RyjXwI/",
+    position: "center",
+  },
+  {
+    image: "/images/instagram/preview6.jpg",
+    link: "https://www.instagram.com/vikky_doch/reel/DR4ndDUDLF-/",
+    position: "top",
+  },
 ];
 
 export default function Instagram() {
@@ -159,6 +176,7 @@ export default function Instagram() {
         id: index + 1,
         image: post.image,
         link: post.link,
+        position: post.position || "center",
         alt: `${t.instagram.postAlt} ${index + 1}`,
       })),
     [t.instagram.postAlt]
@@ -200,6 +218,7 @@ export default function Instagram() {
                 alt={post.alt}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 16vw"
+                style={{ objectPosition: post.position }}
               />
             </InstagramPost>
           ))}

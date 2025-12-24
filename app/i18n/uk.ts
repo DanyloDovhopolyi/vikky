@@ -8,11 +8,9 @@ export const uk = {
     scrollDown: "Прокрутіть",
   },
   nav: {
-    catalog: "Каталог",
-    ethnoDesign: "Етнодизайн",
-    nature: "Природа",
+    about: "Про нас",
     collection: "Колекція",
-    education: "Навчання",
+    courses: "Курси",
     instagram: "Instagram",
   },
   hero: {
@@ -95,7 +93,7 @@ export const uk = {
   instagram: {
     label: "Соціальні мережі",
     title: "Слідкуйте за нами в Instagram",
-    handle: "@vikky.doch",
+    handle: "@vikky_doch",
     subscribeBtn: "Підписатися в Instagram",
     postAlt: "Instagram пост",
   },

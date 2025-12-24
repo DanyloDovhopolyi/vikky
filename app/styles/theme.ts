@@ -135,9 +135,10 @@ export const theme = {
   zIndex: {
     dropdown: 100,
     sticky: 200,
-    modal: 300,
-    overlay: 400,
-    tooltip: 500,
+    overlay: 300,
+    modal: 400,
+    mobileNav: 500,
+    tooltip: 600,
   },
 } as const;
 

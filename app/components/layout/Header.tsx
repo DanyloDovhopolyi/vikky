@@ -9,8 +9,6 @@ import { useTranslations } from "@/app/i18n";
 import {
   FacebookIcon,
   InstagramIcon,
-  SearchIcon,
-  CartIcon,
   MenuIcon,
   CloseIcon,
 } from "@/app/images/icons";
@@ -57,6 +55,15 @@ const Nav = styled.nav<{ $isOpen: boolean }>`
   gap: ${theme.spacing.xl};
 
   @media (max-width: ${theme.breakpoints.lg}) {
+    display: none;
+  }
+`;
+
+const MobileNav = styled.nav<{ $isOpen: boolean }>`
+  display: none;
+
+  @media (max-width: ${theme.breakpoints.lg}) {
+    display: flex;
     position: fixed;
     top: 0;
     right: 0;
@@ -65,15 +72,16 @@ const Nav = styled.nav<{ $isOpen: boolean }>`
     height: 100vh;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: ${theme.spacing.xl};
     background-color: ${theme.colors.primary.main};
     transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "100%")});
     transition: transform ${theme.transitions.normal};
-    z-index: ${theme.zIndex.modal};
+    z-index: ${theme.zIndex.mobileNav};
   }
 `;
 
-const NavLink = styled(Link)<{ $scrolled: boolean }>`
+const NavLink = styled.a<{ $scrolled: boolean }>`
   font-family: ${theme.typography.fontFamily.body};
   font-size: ${theme.typography.fontSize.sm};
   font-weight: ${theme.typography.fontWeight.medium};
@@ -109,6 +117,9 @@ const NavLink = styled(Link)<{ $scrolled: boolean }>`
   @media (max-width: ${theme.breakpoints.lg}) {
     color: ${theme.colors.white};
     font-size: ${theme.typography.fontSize.lg};
+    cursor: pointer;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
 
     &::after {
       background-color: ${theme.colors.white};
@@ -206,11 +217,9 @@ export default function Header() {
 
   const navLinks = useMemo(
     () => [
-      { href: "#catalog", label: t.nav.catalog },
-      { href: "#about", label: t.nav.ethnoDesign },
-      { href: "#philosophy", label: t.nav.nature },
+      { href: "#about", label: t.nav.about },
       { href: "#collections", label: t.nav.collection },
-      { href: "#course", label: t.nav.education },
+      { href: "#course", label: t.nav.courses },
       { href: "#instagram", label: t.nav.instagram },
     ],
     [t.nav]
@@ -223,6 +232,28 @@ export default function Header() {
   const closeMenu = useCallback(() => {
     setMenuOpen(false);
   }, []);
+
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      setMenuOpen(false);
+      document.body.style.overflow = "";
+
+      const targetId = href.replace("#", "");
+      const element = document.getElementById(targetId);
+
+      if (element) {
+        setTimeout(() => {
+          const headerHeight = 80;
+          const top = element.offsetTop - headerHeight;
+          window.scrollTo({ top, behavior: "smooth" });
+        }, 500);
+      }
+    },
+    []
+  );
 
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -249,13 +280,13 @@ export default function Header() {
             {t.common.brandName}
           </Logo>
 
-          <Nav $isOpen={menuOpen}>
+          <Nav $isOpen={menuOpen} className="desktop-nav">
             {navLinks.map((link) => (
               <NavLink
                 key={link.href}
                 href={link.href}
                 $scrolled={scrolled}
-                onClick={closeMenu}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </NavLink>
@@ -267,18 +298,15 @@ export default function Header() {
               <SocialIcon href="#" $scrolled={scrolled} aria-label="Facebook">
                 <FacebookIcon />
               </SocialIcon>
-              <SocialIcon href="#" $scrolled={scrolled} aria-label="Instagram">
+              <SocialIcon
+                href="https://www.instagram.com/vikky_doch/"
+                $scrolled={scrolled}
+                aria-label="Instagram"
+                target="_blank"
+              >
                 <InstagramIcon />
               </SocialIcon>
             </SocialLinks>
-
-            <IconButton $scrolled={scrolled} aria-label="Пошук">
-              <SearchIcon />
-            </IconButton>
-
-            <IconButton $scrolled={scrolled} aria-label="Кошик">
-              <CartIcon />
-            </IconButton>
 
             <MobileMenuButton
               $scrolled={scrolled}
@@ -290,7 +318,20 @@ export default function Header() {
           </HeaderActions>
         </HeaderContainer>
       </HeaderWrapper>
+
       <Overlay $isOpen={menuOpen} onClick={closeMenu} />
+      <MobileNav $isOpen={menuOpen}>
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.href}
+            href={link.href}
+            $scrolled={false}
+            onClick={(e) => handleNavClick(e, link.href)}
+          >
+            {link.label}
+          </NavLink>
+        ))}
+      </MobileNav>
     </>
   );
 }
