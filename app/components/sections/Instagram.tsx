@@ -134,35 +134,20 @@ const CTAWrapper = styled.div`
   margin-top: ${theme.spacing["2xl"]};
 `;
 
-// To add your Instagram photos:
-// 1. Save images from your Instagram posts to: public/images/instagram/
-// 2. Name them post1.jpg, post2.jpg, etc.
-// 3. Update the image paths and links below
+// Додайте свої фото з Instagram:
+// 1. Збережіть фото/скріншоти з постів у папку: public/images/instagram/
+// 2. Назвіть їх post1.jpg, post2.jpg і т.д.
+// 3. Оновіть шляхи та посилання нижче
 const instagramPostsData = [
   {
-    image: "/images/instagram/post1.jpg",
+    image: "/images/instagram/preview1.jpg",
     link: "https://www.instagram.com/vikky_doch/reel/DSkcHthjOJO/",
   },
-  {
-    image: "/images/instagram/post2.jpg",
-    link: "https://www.instagram.com/vikky_doch/",
-  },
-  {
-    image: "/images/instagram/post3.jpg",
-    link: "https://www.instagram.com/vikky_doch/",
-  },
-  {
-    image: "/images/instagram/post4.jpg",
-    link: "https://www.instagram.com/vikky_doch/",
-  },
-  {
-    image: "/images/instagram/post5.jpg",
-    link: "https://www.instagram.com/vikky_doch/",
-  },
-  {
-    image: "/images/instagram/post6.jpg",
-    link: "https://www.instagram.com/vikky_doch/",
-  },
+  // Додайте більше постів тут:
+  // {
+  //   image: "/images/instagram/preview2.jpg",
+  //   link: "https://www.instagram.com/p/POST_ID/",
+  // },
 ];
 
 export default function Instagram() {
