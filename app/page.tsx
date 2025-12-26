@@ -6,7 +6,6 @@ import {
   Hero,
   About,
   Philosophy,
-  Collections,
   Course,
   Instagram,
 } from "./components/sections";
@@ -20,7 +19,7 @@ export default function Home() {
         <Hero />
         <About />
         <Philosophy />
-        <Collections />
+        {/* <Collections /> */}
         <Course />
         <Instagram />
       </main>

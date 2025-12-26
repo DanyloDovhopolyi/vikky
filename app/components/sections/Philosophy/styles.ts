@@ -1,24 +1,18 @@
-"use client";
-
-import { useMemo, ReactNode } from "react";
 import styled from "styled-components";
 import { theme } from "@/app/styles/theme";
-import { Container, Section, H2, Grid } from "@/app/components/ui";
-import { useStaggeredReveal } from "@/app/hooks/useScrollReveal";
-import { useTranslations } from "@/app/i18n";
-import { UserIcon, SparkleIcon, HeartIcon, SunIcon } from "@/app/images/icons";
+import { Section, H2, Grid } from "@/app/components/ui";
 
-const PhilosophySection = styled(Section)`
+export const PhilosophySection = styled(Section)`
   background-color: ${theme.colors.background.primary};
 `;
 
-const SectionHeader = styled.div`
+export const SectionHeader = styled.div`
   text-align: center;
   max-width: 700px;
   margin: 0 auto ${theme.spacing["3xl"]};
 `;
 
-const SectionLabel = styled.span`
+export const SectionLabel = styled.span`
   display: inline-flex;
   align-items: center;
   gap: ${theme.spacing.sm};
@@ -34,17 +28,17 @@ const SectionLabel = styled.span`
   }
 `;
 
-const Title = styled(H2)`
+export const Title = styled(H2)`
   margin-bottom: ${theme.spacing.lg};
 `;
 
-const Subtitle = styled.p`
+export const Subtitle = styled.p`
   font-size: ${theme.typography.fontSize.md};
   color: ${theme.colors.text.secondary};
   line-height: ${theme.typography.lineHeight.relaxed};
 `;
 
-const PhilosophyGrid = styled(Grid)`
+export const PhilosophyGridWrapper = styled(Grid)`
   grid-template-columns: repeat(4, 1fr);
 
   @media (max-width: ${theme.breakpoints.xl}) {
@@ -56,7 +50,10 @@ const PhilosophyGrid = styled(Grid)`
   }
 `;
 
-const PhilosophyCard = styled.article<{ $isVisible: boolean; $index: number }>`
+export const PhilosophyCard = styled.article<{
+  $isVisible: boolean;
+  $index: number;
+}>`
   text-align: center;
   padding: ${theme.spacing.xl};
   background-color: ${theme.colors.white};
@@ -73,7 +70,7 @@ const PhilosophyCard = styled.article<{ $isVisible: boolean; $index: number }>`
   }
 `;
 
-const IconWrapper = styled.div`
+export const IconWrapper = styled.div`
   width: 80px;
   height: 80px;
   margin: 0 auto ${theme.spacing.lg};
@@ -97,7 +94,7 @@ const IconWrapper = styled.div`
   }
 `;
 
-const CardTitle = styled.h3`
+export const CardTitle = styled.h3`
   font-family: ${theme.typography.fontFamily.heading};
   font-size: ${theme.typography.fontSize.lg};
   font-weight: ${theme.typography.fontWeight.semibold};
@@ -105,61 +102,8 @@ const CardTitle = styled.h3`
   margin-bottom: ${theme.spacing.md};
 `;
 
-const CardDescription = styled.p`
+export const CardDescription = styled.p`
   font-size: ${theme.typography.fontSize.sm};
   color: ${theme.colors.text.secondary};
   line-height: ${theme.typography.lineHeight.relaxed};
 `;
-
-const icons: ReactNode[] = [
-  <UserIcon key="1" />,
-  <SparkleIcon key="2" />,
-  <HeartIcon key="3" />,
-  <SunIcon key="4" />,
-];
-
-export default function Philosophy() {
-  const t = useTranslations();
-
-  const philosophyItems = useMemo(
-    () =>
-      t.philosophy.items.map((item, index) => ({
-        id: index + 1,
-        title: item.title,
-        description: item.description,
-        icon: icons[index],
-      })),
-    [t.philosophy.items]
-  );
-
-  const { containerRef, visibleItems } = useStaggeredReveal(
-    philosophyItems.length,
-    150
-  );
-
-  return (
-    <PhilosophySection id="philosophy">
-      <Container>
-        <SectionHeader>
-          <SectionLabel>{t.philosophy.label}</SectionLabel>
-          <Title>{t.philosophy.title}</Title>
-          <Subtitle>{t.philosophy.subtitle}</Subtitle>
-        </SectionHeader>
-
-        <PhilosophyGrid ref={containerRef}>
-          {philosophyItems.map((item, index) => (
-            <PhilosophyCard
-              key={item.id}
-              $isVisible={visibleItems[index]}
-              $index={index}
-            >
-              <IconWrapper>{item.icon}</IconWrapper>
-              <CardTitle>{item.title}</CardTitle>
-              <CardDescription>{item.description}</CardDescription>
-            </PhilosophyCard>
-          ))}
-        </PhilosophyGrid>
-      </Container>
-    </PhilosophySection>
-  );
-}

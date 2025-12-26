@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
-  /* CSS Reset & Base Styles */
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -24,7 +23,6 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
   }
 
-  /* Typography */
   h1, h2, h3, h4, h5, h6 {
     font-family: ${theme.typography.fontFamily.heading};
     font-weight: ${theme.typography.fontWeight.semibold};
@@ -91,13 +89,11 @@ export const GlobalStyles = createGlobalStyle`
     list-style: none;
   }
 
-  /* Selection */
   ::selection {
     background-color: ${theme.colors.primary.main};
     color: ${theme.colors.white};
   }
 
-  /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -115,13 +111,11 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  /* Focus styles for accessibility */
   :focus-visible {
     outline: 2px solid ${theme.colors.primary.main};
     outline-offset: 2px;
   }
 
-  /* Smooth reveal animation class */
   .reveal {
     opacity: 0;
     transform: translateY(30px);

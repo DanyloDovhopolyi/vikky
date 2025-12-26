@@ -1,10 +1,7 @@
-// Container & Layout
 export { Container, Section, FlexRow, FlexColumn, Grid } from "./Container";
 
-// Buttons
 export { Button, ButtonLink } from "./Button";
 
-// Typography
 export {
   H1,
   H2,
@@ -18,7 +15,6 @@ export {
   Typography,
 } from "./Typography";
 
-// Cards
 export {
   Card,
   CardImage,
@@ -32,7 +28,6 @@ export {
   ProductPrice,
 } from "./Card";
 
-// Images
 export {
   ImageWrapper,
   HeroImage,

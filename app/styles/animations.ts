@@ -1,6 +1,5 @@
 import { keyframes, css } from "styled-components";
 
-// Fade animations
 export const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -54,7 +53,6 @@ export const fadeInRight = keyframes`
   }
 `;
 
-// Scale animations
 export const scaleIn = keyframes`
   from {
     opacity: 0;
@@ -75,7 +73,6 @@ export const scaleUp = keyframes`
   }
 `;
 
-// Slide animations
 export const slideInFromBottom = keyframes`
   from {
     transform: translateY(100%);
@@ -94,7 +91,6 @@ export const slideInFromTop = keyframes`
   }
 `;
 
-// Float/hover effect
 export const float = keyframes`
   0%, 100% {
     transform: translateY(0);
@@ -104,7 +100,6 @@ export const float = keyframes`
   }
 `;
 
-// Shimmer effect for loading states
 export const shimmer = keyframes`
   0% {
     background-position: -200% 0;
@@ -114,7 +109,6 @@ export const shimmer = keyframes`
   }
 `;
 
-// Pulse effect
 export const pulse = keyframes`
   0%, 100% {
     opacity: 1;
@@ -124,7 +118,6 @@ export const pulse = keyframes`
   }
 `;
 
-// Rotate
 export const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -134,12 +127,10 @@ export const rotate = keyframes`
   }
 `;
 
-// Stagger animation helper
 export const staggerChild = (index: number, baseDelay: number = 0.1) => css`
   animation-delay: ${index * baseDelay}s;
 `;
 
-// Animation mixins
 export const animationMixins = {
   fadeInUp: css`
     animation: ${fadeInUp} 0.6s ease forwards;
@@ -161,7 +152,6 @@ export const animationMixins = {
   `,
 };
 
-// Intersection Observer animation trigger CSS
 export const revealOnScroll = css`
   opacity: 0;
   transform: translateY(30px);

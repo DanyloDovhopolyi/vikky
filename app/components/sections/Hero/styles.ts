@@ -1,13 +1,8 @@
-"use client";
-
-import { useCallback } from "react";
 import styled, { keyframes } from "styled-components";
-import Image from "next/image";
 import { theme } from "@/app/styles/theme";
 import { Container, ButtonLink } from "@/app/components/ui";
-import { useTranslations } from "@/app/i18n";
 
-const fadeInUp = keyframes`
+export const fadeInUp = keyframes`
   from {
     opacity: 0;
     transform: translateY(40px);
@@ -18,7 +13,7 @@ const fadeInUp = keyframes`
   }
 `;
 
-const HeroSection = styled.section`
+export const HeroSection = styled.section`
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -26,7 +21,7 @@ const HeroSection = styled.section`
   overflow: hidden;
 `;
 
-const BackgroundImage = styled.div`
+export const BackgroundImage = styled.div`
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -52,7 +47,7 @@ const BackgroundImage = styled.div`
   }
 `;
 
-const HeroContainer = styled(Container)`
+export const HeroContainer = styled(Container)`
   position: relative;
   z-index: 1;
   display: grid;
@@ -69,7 +64,7 @@ const HeroContainer = styled(Container)`
   }
 `;
 
-const HeroContent = styled.div`
+export const HeroContentWrapper = styled.div`
   max-width: 600px;
 
   @media (max-width: ${theme.breakpoints.lg}) {
@@ -77,39 +72,57 @@ const HeroContent = styled.div`
   }
 `;
 
-const HeroTitle = styled.h1`
+export const HeroTitle = styled.h1`
   font-family: ${theme.typography.fontFamily.heading};
   font-size: clamp(2.5rem, 5vw, ${theme.typography.fontSize["5xl"]});
   font-weight: ${theme.typography.fontWeight.semibold};
   line-height: ${theme.typography.lineHeight.tight};
   color: ${theme.colors.white};
   margin-bottom: ${theme.spacing.lg};
+  white-space: pre-line;
   opacity: 0;
   animation: ${fadeInUp} 0.8s ease forwards;
   animation-delay: 0.2s;
 `;
 
-const HeroSubtitle = styled.p`
+export const HeroSubtitle = styled.p`
   font-family: ${theme.typography.fontFamily.body};
-  font-size: ${theme.typography.fontSize.md};
+  font-size: ${theme.typography.fontSize.lg};
   line-height: ${theme.typography.lineHeight.relaxed};
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: ${theme.spacing.xl};
+  margin-bottom: ${theme.spacing.md};
+  white-space: pre-line;
   opacity: 0;
   animation: ${fadeInUp} 0.8s ease forwards;
   animation-delay: 0.4s;
 
   @media (max-width: ${theme.breakpoints.md}) {
-    font-size: ${theme.typography.fontSize.base};
+    font-size: ${theme.typography.fontSize.lg};
   }
 `;
 
-const HeroButtons = styled.div`
+export const HeroText = styled.p`
+  font-family: ${theme.typography.fontFamily.body};
+  font-size: ${theme.typography.fontSize.base};
+  line-height: ${theme.typography.lineHeight.relaxed};
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: ${theme.spacing.xl};
+  white-space: pre-line;
+  opacity: 0;
+  animation: ${fadeInUp} 0.8s ease forwards;
+  animation-delay: 0.6s;
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: ${theme.typography.fontSize.sm};
+  }
+`;
+
+export const HeroButtons = styled.div`
   display: flex;
   gap: ${theme.spacing.md};
   opacity: 0;
   animation: ${fadeInUp} 0.8s ease forwards;
-  animation-delay: 0.6s;
+  animation-delay: 0.8s;
 
   @media (max-width: ${theme.breakpoints.lg}) {
     justify-content: center;
@@ -124,7 +137,7 @@ const HeroButtons = styled.div`
   }
 `;
 
-const PrimaryButton = styled(ButtonLink)`
+export const PrimaryButton = styled(ButtonLink)`
   background-color: ${theme.colors.secondary.main};
   color: ${theme.colors.primary.main};
   border-color: ${theme.colors.secondary.main};
@@ -135,7 +148,7 @@ const PrimaryButton = styled(ButtonLink)`
   }
 `;
 
-const OutlineButton = styled(ButtonLink)`
+export const OutlineButton = styled(ButtonLink)`
   background-color: transparent;
   color: ${theme.colors.white};
   border: 2px solid ${theme.colors.white};
@@ -146,7 +159,7 @@ const OutlineButton = styled(ButtonLink)`
   }
 `;
 
-const ScrollIndicator = styled.div`
+export const ScrollIndicatorWrapper = styled.div`
   position: absolute;
   bottom: ${theme.spacing.xl};
   left: 50%;
@@ -166,7 +179,7 @@ const ScrollIndicator = styled.div`
   }
 `;
 
-const ScrollText = styled.span`
+export const ScrollText = styled.span`
   font-size: ${theme.typography.fontSize.xs};
   text-transform: uppercase;
   letter-spacing: ${theme.typography.letterSpacing.widest};
@@ -181,7 +194,7 @@ const scrollBounce = keyframes`
   }
 `;
 
-const ScrollIcon = styled.div`
+export const ScrollIcon = styled.div`
   width: 24px;
   height: 40px;
   border: 2px solid ${theme.colors.white};
@@ -202,7 +215,7 @@ const ScrollIcon = styled.div`
   }
 `;
 
-const FloatingElements = styled.div`
+export const FloatingElements = styled.div`
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -219,7 +232,7 @@ const floatAnimation = keyframes`
   }
 `;
 
-const FloatingShape = styled.div<{
+export const FloatingShape = styled.div<{
   $delay: string;
   $size: string;
   $top: string;
@@ -239,57 +252,3 @@ const FloatingShape = styled.div<{
   animation: ${floatAnimation} 6s ease-in-out infinite;
   animation-delay: ${({ $delay }) => $delay};
 `;
-
-export default function Hero() {
-  const t = useTranslations();
-
-  const scrollToContent = useCallback(() => {
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
-
-  return (
-    <HeroSection id="hero">
-      <BackgroundImage>
-        <Image
-          src="/images/hero.png"
-          alt="Vikky-Doch - Ukrainian fashion brand"
-          fill
-          priority
-        />
-      </BackgroundImage>
-
-      <FloatingElements>
-        <FloatingShape $delay="0s" $size="300px" $top="10%" $left="60%" />
-        <FloatingShape $delay="2s" $size="200px" $top="60%" $left="80%" />
-        <FloatingShape $delay="4s" $size="150px" $top="30%" $left="85%" />
-      </FloatingElements>
-
-      <HeroContainer>
-        <HeroContent>
-          <HeroTitle>
-            {t.hero.title}
-            <br />
-            {t.hero.titleLine2}
-          </HeroTitle>
-          <HeroSubtitle>{t.hero.subtitle}</HeroSubtitle>
-          <HeroButtons>
-            <PrimaryButton href="#collections" $size="lg">
-              {t.hero.catalogBtn}
-            </PrimaryButton>
-            <OutlineButton href="#about" $size="lg" $variant="outline">
-              {t.hero.aboutBtn}
-            </OutlineButton>
-          </HeroButtons>
-        </HeroContent>
-      </HeroContainer>
-
-      <ScrollIndicator onClick={scrollToContent}>
-        <ScrollText>{t.common.scrollDown}</ScrollText>
-        <ScrollIcon />
-      </ScrollIndicator>
-    </HeroSection>
-  );
-}

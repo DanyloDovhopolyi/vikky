@@ -1,40 +1,34 @@
 export const theme = {
   colors: {
-    // Primary - Deep Burgundy/Maroon
     primary: {
       main: "#5C2434",
       light: "#7A3448",
       dark: "#3D1823",
       contrast: "#FFFFFF",
     },
-    // Secondary - Warm Cream/Beige
     secondary: {
       main: "#F5EDE4",
       light: "#FAF8F5",
       dark: "#E8DFD4",
       contrast: "#2C1810",
     },
-    // Accent - Warm Gold
     accent: {
       main: "#C9A962",
       light: "#D4B87A",
       dark: "#B89B4F",
     },
-    // Text colors
     text: {
       primary: "#2C1810",
       secondary: "#5A4A42",
       light: "#8B7B73",
       inverse: "#FFFFFF",
     },
-    // Background variations
     background: {
       primary: "#FAF8F5",
       secondary: "#F5EDE4",
       tertiary: "#E8DFD4",
       dark: "#5C2434",
     },
-    // Utility colors
     white: "#FFFFFF",
     black: "#1A1A1A",
     overlay: "rgba(92, 36, 52, 0.85)",

@@ -24,32 +24,32 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Vikky-Doch | Український бренд етнічного одягу",
-    template: "%s | Vikky-Doch",
+    default: "Vikky-doch | Український бренд етнічного одягу",
+    template: "%s | Vikky-doch",
   },
   description:
-    "Vikky-Doch — український бренд етнічного одягу. Унікальні вироби ручної роботи, що поєднують традиції та сучасність. Створюємо елегантний одяг для особливих моментів.",
+    "Vikky-doch — український бренд етнічного одягу. Унікальні вироби ручної роботи, що поєднують традиції та сучасність. Створюємо елегантний одяг для особливих моментів.",
   keywords: [
     "український одяг",
     "етнічний одяг",
     "вишиванки",
     "українська мода",
     "ручна робота",
-    "Vikky-Doch",
+    "Vikky-doch",
     "українські традиції",
     "весільні сукні",
     "авторський одяг",
     "етнодизайн",
   ],
-  authors: [{ name: "Vikky-Doch" }],
-  creator: "Vikky-Doch",
-  publisher: "Vikky-Doch",
+  authors: [{ name: "Vikky-doch" }],
+  creator: "Vikky-doch",
+  publisher: "Vikky-doch",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://vikky-doch.ua"),
+  metadataBase: new URL("https://Vikky-doch.ua"),
   alternates: {
     canonical: "/",
     languages: {
@@ -59,9 +59,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "uk_UA",
-    url: "https://vikky-doch.ua",
-    siteName: "Vikky-Doch",
-    title: "Vikky-Doch | Український бренд етнічного одягу",
+    url: "https://Vikky-doch.ua",
+    siteName: "Vikky-doch",
+    title: "Vikky-doch | Український бренд етнічного одягу",
     description:
       "Унікальні вироби ручної роботи, що поєднують українські традиції та сучасний стиль. Створюємо елегантний одяг для особливих моментів.",
     images: [
@@ -69,13 +69,13 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Vikky-Doch - Український етнічний одяг",
+        alt: "Vikky-doch - Український етнічний одяг",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vikky-Doch | Український бренд етнічного одягу",
+    title: "Vikky-doch | Український бренд етнічного одягу",
     description:
       "Унікальні вироби ручної роботи, що поєднують українські традиції та сучасний стиль.",
     images: ["/images/og-image.jpg"],

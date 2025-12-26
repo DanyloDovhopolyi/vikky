@@ -1,25 +1,18 @@
-"use client";
-
-import { useMemo } from "react";
 import styled from "styled-components";
-import Image from "next/image";
 import { theme } from "@/app/styles/theme";
-import { Container, Section, H2, ButtonLink } from "@/app/components/ui";
-import { useStaggeredReveal } from "@/app/hooks/useScrollReveal";
-import { useTranslations } from "@/app/i18n";
-import { InstagramIcon } from "@/app/images/icons";
+import { Section, H2 } from "@/app/components/ui";
 
-const InstagramSection = styled(Section)`
+export const InstagramSection = styled(Section)`
   background-color: ${theme.colors.background.primary};
 `;
 
-const SectionHeader = styled.div`
+export const SectionHeader = styled.div`
   text-align: center;
   max-width: 600px;
   margin: 0 auto ${theme.spacing["2xl"]};
 `;
 
-const SectionLabel = styled.span`
+export const SectionLabel = styled.span`
   display: inline-flex;
   align-items: center;
   gap: ${theme.spacing.sm};
@@ -35,11 +28,11 @@ const SectionLabel = styled.span`
   }
 `;
 
-const Title = styled(H2)`
+export const Title = styled(H2)`
   margin-bottom: ${theme.spacing.md};
 `;
 
-const Handle = styled.a`
+export const Handle = styled.a`
   display: inline-flex;
   align-items: center;
   gap: ${theme.spacing.sm};
@@ -59,7 +52,7 @@ const Handle = styled.a`
   }
 `;
 
-const InstagramGrid = styled.div`
+export const InstagramGridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: ${theme.spacing.sm};
@@ -73,7 +66,10 @@ const InstagramGrid = styled.div`
   }
 `;
 
-const InstagramPost = styled.a<{ $isVisible: boolean; $index: number }>`
+export const InstagramPostLink = styled.a<{
+  $isVisible: boolean;
+  $index: number;
+}>`
   position: relative;
   aspect-ratio: 1;
   overflow: hidden;
@@ -129,112 +125,7 @@ const InstagramPost = styled.a<{ $isVisible: boolean; $index: number }>`
   }
 `;
 
-const CTAWrapper = styled.div`
+export const CTAWrapper = styled.div`
   text-align: center;
   margin-top: ${theme.spacing["2xl"]};
 `;
-
-const instagramPostsData = [
-  {
-    image: "/images/instagram/preview1.jpg",
-    link: "https://www.instagram.com/vikky_doch/reel/DSkcHthjOJO/",
-    position: "center",
-  },
-  {
-    image: "/images/instagram/preview2.jpg",
-    link: "https://www.instagram.com/vikky_doch/reel/DR1w1FYDORU/",
-    position: "center",
-  },
-  {
-    image: "/images/instagram/preview3.jpg",
-    link: "https://www.instagram.com/vikky_doch/reel/DR_-URsjJ8D/",
-    position: "top",
-  },
-  {
-    image: "/images/instagram/preview4.jpg",
-    link: "https://www.instagram.com/vikky_doch/reel/DR_-IkIjMe9/",
-    position: "top",
-  },
-  {
-    image: "/images/instagram/preview5.jpg",
-    link: "https://www.instagram.com/vikky_doch/reel/DRyv5RyjXwI/",
-    position: "center",
-  },
-  {
-    image: "/images/instagram/preview6.jpg",
-    link: "https://www.instagram.com/vikky_doch/reel/DR4ndDUDLF-/",
-    position: "top",
-  },
-];
-
-export default function Instagram() {
-  const t = useTranslations();
-
-  const instagramPosts = useMemo(
-    () =>
-      instagramPostsData.map((post, index) => ({
-        id: index + 1,
-        image: post.image,
-        link: post.link,
-        position: post.position || "center",
-        alt: `${t.instagram.postAlt} ${index + 1}`,
-      })),
-    [t.instagram.postAlt]
-  );
-
-  const { containerRef, visibleItems } = useStaggeredReveal(
-    instagramPosts.length,
-    100
-  );
-
-  return (
-    <InstagramSection id="instagram">
-      <Container>
-        <SectionHeader>
-          <SectionLabel>{t.instagram.label}</SectionLabel>
-          <Title>{t.instagram.title}</Title>
-          <Handle
-            href="https://www.instagram.com/vikky_doch/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon />
-            {t.instagram.handle}
-          </Handle>
-        </SectionHeader>
-
-        <InstagramGrid ref={containerRef}>
-          {instagramPosts.map((post, index) => (
-            <InstagramPost
-              key={post.id}
-              href={post.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              $isVisible={visibleItems[index]}
-              $index={index}
-            >
-              <Image
-                src={post.image}
-                alt={post.alt}
-                fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 16vw"
-                style={{ objectPosition: post.position }}
-              />
-            </InstagramPost>
-          ))}
-        </InstagramGrid>
-
-        <CTAWrapper>
-          <ButtonLink
-            href="https://www.instagram.com/vikky_doch/"
-            target="_blank"
-            rel="noopener noreferrer"
-            $variant="outline"
-          >
-            {t.instagram.subscribeBtn}
-          </ButtonLink>
-        </CTAWrapper>
-      </Container>
-    </InstagramSection>
-  );
-}

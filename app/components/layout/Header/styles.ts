@@ -1,19 +1,9 @@
-"use client";
-
-import { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { theme } from "@/app/styles/theme";
-import { Container, FlexRow } from "@/app/components/ui";
-import { useTranslations } from "@/app/i18n";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  MenuIcon,
-  CloseIcon,
-} from "@/app/images/icons";
+import { FlexRow } from "@/app/components/ui";
 
-const HeaderWrapper = styled.header<{ $scrolled: boolean }>`
+export const HeaderWrapper = styled.header<{ $scrolled: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -28,13 +18,16 @@ const HeaderWrapper = styled.header<{ $scrolled: boolean }>`
   transition: all ${theme.transitions.normal};
 `;
 
-const HeaderContainer = styled(Container)`
+export const HeaderContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 ${theme.spacing.lg};
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-const Logo = styled(Link)<{ $scrolled: boolean }>`
+export const Logo = styled(Link)<{ $scrolled: boolean }>`
   font-family: ${theme.typography.fontFamily.accent};
   font-size: ${theme.typography.fontSize.xl};
   font-weight: ${theme.typography.fontWeight.semibold};
@@ -49,7 +42,7 @@ const Logo = styled(Link)<{ $scrolled: boolean }>`
   }
 `;
 
-const Nav = styled.nav<{ $isOpen: boolean }>`
+export const Nav = styled.nav<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.xl};
@@ -59,7 +52,7 @@ const Nav = styled.nav<{ $isOpen: boolean }>`
   }
 `;
 
-const MobileNav = styled.nav<{ $isOpen: boolean }>`
+export const MobileNav = styled.nav<{ $isOpen: boolean }>`
   display: none;
 
   @media (max-width: ${theme.breakpoints.lg}) {
@@ -81,7 +74,7 @@ const MobileNav = styled.nav<{ $isOpen: boolean }>`
   }
 `;
 
-const NavLink = styled.a<{ $scrolled: boolean }>`
+export const NavLink = styled.a<{ $scrolled: boolean }>`
   font-family: ${theme.typography.fontFamily.body};
   font-size: ${theme.typography.fontSize.sm};
   font-weight: ${theme.typography.fontWeight.medium};
@@ -127,11 +120,11 @@ const NavLink = styled.a<{ $scrolled: boolean }>`
   }
 `;
 
-const HeaderActions = styled(FlexRow)`
+export const HeaderActions = styled(FlexRow)`
   gap: ${theme.spacing.lg};
 `;
 
-const IconButton = styled.button<{ $scrolled: boolean }>`
+export const IconButton = styled.button<{ $scrolled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,7 +146,7 @@ const IconButton = styled.button<{ $scrolled: boolean }>`
   }
 `;
 
-const MobileMenuButton = styled(IconButton)`
+export const MobileMenuButton = styled(IconButton)`
   display: none;
   z-index: ${theme.zIndex.modal + 1};
 
@@ -162,7 +155,7 @@ const MobileMenuButton = styled(IconButton)`
   }
 `;
 
-const Overlay = styled.div<{ $isOpen: boolean }>`
+export const Overlay = styled.div<{ $isOpen: boolean }>`
   display: none;
 
   @media (max-width: ${theme.breakpoints.lg}) {
@@ -177,7 +170,7 @@ const Overlay = styled.div<{ $isOpen: boolean }>`
   }
 `;
 
-const SocialLinks = styled.div`
+export const SocialLinks = styled.div`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.sm};
@@ -187,7 +180,7 @@ const SocialLinks = styled.div`
   }
 `;
 
-const SocialIcon = styled.a<{ $scrolled: boolean }>`
+export const SocialIcon = styled.a<{ $scrolled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,129 +202,3 @@ const SocialIcon = styled.a<{ $scrolled: boolean }>`
     height: 18px;
   }
 `;
-
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const t = useTranslations();
-
-  const navLinks = useMemo(
-    () => [
-      { href: "#about", label: t.nav.about },
-      { href: "#collections", label: t.nav.collection },
-      { href: "#course", label: t.nav.courses },
-      { href: "#instagram", label: t.nav.instagram },
-    ],
-    [t.nav]
-  );
-
-  const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 50);
-  }, []);
-
-  const closeMenu = useCallback(() => {
-    setMenuOpen(false);
-  }, []);
-
-  const handleNavClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      setMenuOpen(false);
-      document.body.style.overflow = "";
-
-      const targetId = href.replace("#", "");
-      const element = document.getElementById(targetId);
-
-      if (element) {
-        setTimeout(() => {
-          const headerHeight = 80;
-          const top = element.offsetTop - headerHeight;
-          window.scrollTo({ top, behavior: "smooth" });
-        }, 500);
-      }
-    },
-    []
-  );
-
-  const toggleMenu = useCallback(() => {
-    setMenuOpen((prev) => !prev);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [menuOpen]);
-
-  return (
-    <>
-      <HeaderWrapper $scrolled={scrolled}>
-        <HeaderContainer>
-          <Logo href="/" $scrolled={scrolled}>
-            {t.common.brandName}
-          </Logo>
-
-          <Nav $isOpen={menuOpen} className="desktop-nav">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.href}
-                href={link.href}
-                $scrolled={scrolled}
-                onClick={(e) => handleNavClick(e, link.href)}
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </Nav>
-
-          <HeaderActions $gap={theme.spacing.md}>
-            <SocialLinks>
-              <SocialIcon href="#" $scrolled={scrolled} aria-label="Facebook">
-                <FacebookIcon />
-              </SocialIcon>
-              <SocialIcon
-                href="https://www.instagram.com/vikky_doch/"
-                $scrolled={scrolled}
-                aria-label="Instagram"
-                target="_blank"
-              >
-                <InstagramIcon />
-              </SocialIcon>
-            </SocialLinks>
-
-            <MobileMenuButton
-              $scrolled={scrolled}
-              onClick={toggleMenu}
-              aria-label={menuOpen ? "Закрити меню" : "Відкрити меню"}
-            >
-              {menuOpen ? <CloseIcon /> : <MenuIcon />}
-            </MobileMenuButton>
-          </HeaderActions>
-        </HeaderContainer>
-      </HeaderWrapper>
-
-      <Overlay $isOpen={menuOpen} onClick={closeMenu} />
-      <MobileNav $isOpen={menuOpen}>
-        {navLinks.map((link) => (
-          <NavLink
-            key={link.href}
-            href={link.href}
-            $scrolled={false}
-            onClick={(e) => handleNavClick(e, link.href)}
-          >
-            {link.label}
-          </NavLink>
-        ))}
-      </MobileNav>
-    </>
-  );
-}

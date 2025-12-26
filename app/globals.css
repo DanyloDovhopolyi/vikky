@@ -1,4 +1,3 @@
-/* Base reset and font variables */
 :root {
   --font-playfair: "Playfair Display", Georgia, serif;
   --font-inter: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -25,13 +24,11 @@ body {
   background-color: #faf8f5;
 }
 
-/* Ensure images don't overflow */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Remove default button styles */
 button {
   font-family: inherit;
   border: none;
@@ -39,31 +36,26 @@ button {
   cursor: pointer;
 }
 
-/* Remove default link styles */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* Remove list styles */
 ul,
 ol {
   list-style: none;
 }
 
-/* Prevent text selection on interactive elements */
 button,
 a {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Focus visible for accessibility */
 :focus-visible {
   outline: 2px solid #5c2434;
   outline-offset: 2px;
 }
 
-/* Disable focus outline for mouse users */
 :focus:not(:focus-visible) {
   outline: none;
 }
