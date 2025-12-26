@@ -20,7 +20,6 @@ export default function Header() {
   const navLinks = useMemo(
     () => [
       { href: "#about", label: t.nav.about },
-      { href: "#collections", label: t.nav.collection },
       { href: "#course", label: t.nav.courses },
       { href: "#instagram", label: t.nav.instagram },
     ],
