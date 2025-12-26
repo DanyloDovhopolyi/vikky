@@ -24,11 +24,11 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Vikky-doch | Український бренд етнічного одягу",
+    default: "Vikky-doch | Український бренд  одягу",
     template: "%s | Vikky-doch",
   },
   description:
-    "Vikky-doch — український бренд етнічного одягу. Унікальні вироби ручної роботи, що поєднують традиції та сучасність. Створюємо елегантний одяг для особливих моментів.",
+    "Vikky-Doch — український бренд одягу, створений з теплом і сенсом.",
   keywords: [
     "український одяг",
     "етнічний одяг",
@@ -39,7 +39,12 @@ export const metadata: Metadata = {
     "українські традиції",
     "весільні сукні",
     "авторський одяг",
-    "етнодизайн",
+    "костюм",
+    "курс крою та шиття",
+    "курс шиття",
+    "курс крою",
+    "курс шиття для початківців",
+    "курс крою для початківців",
   ],
   authors: [{ name: "Vikky-doch" }],
   creator: "Vikky-doch",
@@ -49,7 +54,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://Vikky-doch.ua"),
+
   alternates: {
     canonical: "/",
     languages: {
@@ -59,25 +64,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "uk_UA",
-    url: "https://Vikky-doch.ua",
+
     siteName: "Vikky-doch",
-    title: "Vikky-doch | Український бренд етнічного одягу",
+    title: "Vikky-doch | Український бренд одягу",
     description:
-      "Унікальні вироби ручної роботи, що поєднують українські традиції та сучасний стиль. Створюємо елегантний одяг для особливих моментів.",
+      "Vikky-Doch — український бренд одягу, створений з теплом і сенсом.",
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Vikky-doch - Український етнічний одяг",
+        alt: "Vikky-doch - Український бренд одягу",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vikky-doch | Український бренд етнічного одягу",
+    title: "Vikky-doch | Український бренд одягу",
     description:
-      "Унікальні вироби ручної роботи, що поєднують українські традиції та сучасний стиль.",
+      "Vikky-Doch — український бренд одягу, створений з теплом і сенсом.",
     images: ["/images/og-image.jpg"],
   },
   robots: {
@@ -91,12 +96,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: "/site.webmanifest",
 };
 
 export const viewport: Viewport = {

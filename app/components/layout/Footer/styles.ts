@@ -54,10 +54,11 @@ export const FooterDescription = styled.p`
   color: rgba(255, 255, 255, 0.7);
   line-height: ${theme.typography.lineHeight.relaxed};
   max-width: 300px;
+  margin-bottom: ${theme.spacing.md};
 
   @media (max-width: ${theme.breakpoints.md}) {
     max-width: none;
-    margin: 0 auto;
+    margin: 0 auto ${theme.spacing.md};
   }
 `;
 
@@ -90,8 +91,14 @@ export const FooterLink = styled.li`
 
 export const ContactInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: ${theme.spacing.md};
+  justify-content: flex-start;
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    justify-content: center;
+  }
 `;
 
 export const ContactItem = styled.a`
@@ -101,6 +108,8 @@ export const ContactItem = styled.a`
   font-size: ${theme.typography.fontSize.sm};
   color: rgba(255, 255, 255, 0.7);
   transition: color ${theme.transitions.fast};
+  white-space: nowrap;
+  flex-shrink: 0;
 
   @media (max-width: ${theme.breakpoints.md}) {
     justify-content: center;
@@ -120,7 +129,8 @@ export const ContactItem = styled.a`
 export const SocialLinks = styled.div`
   display: flex;
   gap: ${theme.spacing.sm};
-  margin-top: ${theme.spacing.lg};
+  margin-top: ${theme.spacing.md};
+  justify-content: flex-start;
 
   @media (max-width: ${theme.breakpoints.md}) {
     justify-content: center;
