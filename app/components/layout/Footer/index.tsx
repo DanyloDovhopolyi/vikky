@@ -10,8 +10,6 @@ export default function Footer() {
 
   const navigationLinks = useMemo(
     () => [
-      { href: "#catalog", label: t.footer.navigation.catalog },
-      { href: "#collections", label: t.footer.navigation.collections },
       { href: "#course", label: t.footer.navigation.education },
       { href: "#about", label: t.footer.navigation.about },
     ],
